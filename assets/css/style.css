@@ -251,3 +251,74 @@ h1{
 }
 
 }
+
+/* ---------- Tarjetas de Productos ---------- */
+
+.lista-productos {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+
+}
+
+.tarjeta-producto {
+
+    background: var(--blanco);
+    border: 2px solid #f1f1f1;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    transition: .3s;
+    box-shadow: var(--sombra);
+
+}
+
+.tarjeta-producto:hover {
+
+    transform: translateY(-5px);
+
+}
+
+.tarjeta-producto .emoji {
+
+    font-size: 55px;
+    margin-bottom: 15px;
+
+}
+
+.tarjeta-producto h3 {
+
+    margin-bottom: 10px;
+    color: var(--chocolate);
+
+}
+
+.tarjeta-producto p {
+
+    margin: 6px 0;
+    color: var(--gris);
+
+}
+
+.btn-agregar {
+
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--vino);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+
+}
+
+.btn-agregar:hover {
+
+    opacity: .9;
+
+}
