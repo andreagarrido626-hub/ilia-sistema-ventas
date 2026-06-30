@@ -322,3 +322,18 @@ h1{
     opacity: .9;
 
 }
+
+.btn-agregado {
+
+    background: #4CAF50 !important;
+    color: white;
+    cursor: default;
+
+}
+
+.btn-agregado:hover {
+
+    transform: none !important;
+    opacity: 1;
+
+}

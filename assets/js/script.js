@@ -137,8 +137,16 @@ function crearTarjetaProducto(producto) {
     stock.textContent = `Stock: ${producto.stock}`;
 
     const boton = document.createElement("button");
-    boton.classList.add("btn-agregar");
-    boton.textContent = "Agregar al carrito";
+boton.classList.add("btn-agregar");
+boton.textContent = "Agregar al carrito";
+
+// Guardamos el id del producto en el botón
+boton.dataset.id = producto.id;
+
+// Evento del botón
+boton.addEventListener("click", () => {
+    agregarAlCarrito(producto.id, boton);
+});
 
     tarjeta.append(
         emoji,
@@ -177,5 +185,35 @@ function mostrarProductos() {
     panel.appendChild(titulo);
     panel.appendChild(descripcion);
     panel.appendChild(lista);
+
+}function agregarAlCarrito(idProducto, boton) {
+
+    // Buscar el producto por su id
+    const producto = productos.find(producto => producto.id === idProducto);
+
+    // Verificar que no esté ya en el carrito
+    const existe = carrito.some(item => item.id === idProducto);
+
+    if (existe) {
+        return;
+    }
+
+    // Agregar al carrito
+    carrito.push(producto);
+
+    // Cambiar el botón
+    boton.textContent = "✅ Agregado";
+boton.classList.add("btn-agregado");
+boton.disabled = true;
+
+    actualizarContadorCarrito();
+
+}
+
+function actualizarContadorCarrito() {
+
+    const btnCarrito = document.getElementById("btnCarrito");
+
+    btnCarrito.textContent = `🛒 Carrito (${carrito.length})`;
 
 }
