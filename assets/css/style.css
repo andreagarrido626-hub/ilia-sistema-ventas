@@ -1,0 +1,253 @@
+/* ==========================================
+   ILIA POS
+   Sistema de Gestión de Ventas
+   ========================================== */
+
+/* ---------- Variables de color ---------- */
+
+:root{
+
+    --crema:#F8F5F2;
+    --blanco:#FFFFFF;
+    --chocolate:#6B4A32;
+    --vino:#AF3154;
+    --rosa:#EAA0BE;
+    --gris:#6E6E6E;
+
+    --sombra:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* ---------- Reset ---------- */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+/* ---------- Body ---------- */
+
+body{
+
+    background:var(--crema);
+
+    font-family:'Poppins',sans-serif;
+
+    color:var(--chocolate);
+
+}
+
+/* ---------- Contenedor ---------- */
+
+.contenedor{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+}
+
+/* ---------- Header ---------- */
+
+header{
+
+    background:var(--blanco);
+
+    border-radius:25px;
+
+    padding:50px;
+
+    text-align:center;
+
+    box-shadow:var(--sombra);
+
+}
+
+/* ---------- Logo ---------- */
+
+.logo{
+
+    width:220px;
+
+    max-width:100%;
+
+    display:block;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+}
+
+/* ---------- Títulos ---------- */
+
+h1{
+
+    font-size:36px;
+
+    color:var(--chocolate);
+
+    margin-bottom:10px;
+
+}
+
+.descripcion{
+
+    color:var(--gris);
+
+    font-size:18px;
+
+}
+
+/* ---------- Menú ---------- */
+
+.menu{
+
+    margin-top:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+
+    gap:20px;
+
+}
+
+/* ---------- Botones ---------- */
+
+.menu button{
+
+    background:var(--blanco);
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    cursor:pointer;
+
+    box-shadow:var(--sombra);
+
+    transition:.30s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:17px;
+
+    color:var(--chocolate);
+
+    font-weight:600;
+
+}
+
+.menu button span{
+
+    font-size:40px;
+
+}
+
+.menu button:hover{
+
+    background:var(--vino);
+
+    color:white;
+
+    transform:translateY(-8px);
+
+}
+
+.menu button:hover span{
+
+    transform:scale(1.10);
+
+}
+
+/* ---------- Panel ---------- */
+
+#panel{
+
+    margin-top:35px;
+
+    background:var(--blanco);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    min-height:400px;
+
+    box-shadow:var(--sombra);
+
+}
+
+#panel h2{
+
+    margin-bottom:20px;
+
+}
+
+#panel p{
+
+    line-height:1.8;
+
+    color:var(--gris);
+
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    color:var(--gris);
+
+    padding:20px;
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:768px){
+
+header{
+
+    padding:30px;
+
+}
+
+.logo{
+
+    width:170px;
+
+}
+
+h1{
+
+    font-size:28px;
+
+}
+
+.menu{
+
+    grid-template-columns:1fr;
+
+}
+
+}

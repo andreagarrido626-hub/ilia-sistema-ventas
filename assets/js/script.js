@@ -1,0 +1,1 @@
+console.log("ILIA Sistema de Gestión iniciado correctamente.");
