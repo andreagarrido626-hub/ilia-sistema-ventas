@@ -375,3 +375,61 @@ h1{
     animation: rebote .35s ease;
 
 }
+
+/*========================================*/
+/* CONTROLES DEL CARRITO */
+/*========================================*/
+
+.controles-cantidad{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:15px 0;
+
+}
+
+.controles-cantidad button{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    background:var(--vino);
+
+    color:white;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.controles-cantidad button:hover{
+
+    transform:scale(1.08);
+
+}
+
+.controles-cantidad span{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    min-width:30px;
+
+    text-align:center;
+
+}

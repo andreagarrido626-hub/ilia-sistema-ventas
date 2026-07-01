@@ -315,6 +315,101 @@ function actualizarContadorCarrito() {
 
 
 //======================================================//
+//                 MOSTRAR CARRITO                      //
+//======================================================//
+
+function mostrarCarrito() {
+
+    // Limpiar el panel
+    limpiarPanel();
+
+    // Título
+    const titulo = document.createElement("h2");
+    titulo.textContent = "🛒 Mi Carrito";
+
+    panel.appendChild(titulo);
+
+    // Si el carrito está vacío
+    if (carrito.length === 0) {
+
+        const mensaje = document.createElement("p");
+
+        mensaje.textContent =
+            "Tu carrito está vacío.";
+
+        panel.appendChild(mensaje);
+
+        return;
+
+    }
+
+    let totalCompra = 0;
+
+    // Recorrer el carrito
+    for (const item of carrito) {
+
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("tarjeta-producto");
+
+        // Nombre
+        const nombre = document.createElement("h3");
+        nombre.textContent =
+            `${item.producto.emoji} ${item.producto.nombre}`;
+
+        //======================================================//
+        // CONTROLES DE CANTIDAD
+        //======================================================//
+
+        const controles = document.createElement("div");
+        controles.classList.add("controles-cantidad");
+
+        // Botón disminuir
+        const btnMenos = document.createElement("button");
+        btnMenos.textContent = "➖";
+
+        // Cantidad
+        const cantidad = document.createElement("span");
+        cantidad.textContent = item.cantidad;
+
+        // Botón aumentar
+        const btnMas = document.createElement("button");
+        btnMas.textContent = "➕";
+
+        controles.append(
+            btnMenos,
+            cantidad,
+            btnMas
+        );
+
+        // Subtotal
+        const subtotal = item.producto.precio * item.cantidad;
+
+        totalCompra += subtotal;
+
+        const precio = document.createElement("p");
+        precio.textContent =
+            `Subtotal: $${subtotal}`;
+
+        tarjeta.append(
+            nombre,
+            controles,
+            precio
+        );
+
+        panel.appendChild(tarjeta);
+
+    }
+
+    // Total
+    const total = document.createElement("h3");
+    total.textContent =
+        `💰 Total: $${totalCompra}`;
+
+    panel.appendChild(total);
+
+}
+
+//======================================================//
 //                     EVENTOS                          //
 //======================================================//
 
@@ -330,14 +425,7 @@ btnBuscar.addEventListener("click", () => {
     panel.appendChild(titulo);
 });
 
-btnCarrito.addEventListener("click", () => {
-    limpiarPanel();
-
-    const titulo = document.createElement("h2");
-    titulo.textContent = "🛒 Carrito";
-
-    panel.appendChild(titulo);
-});
+btnCarrito.addEventListener("click", mostrarCarrito);
 
 btnInventario.addEventListener("click", () => {
     limpiarPanel();
