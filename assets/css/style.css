@@ -337,3 +337,41 @@ h1{
     opacity: 1;
 
 }
+
+.carrito-activo{
+
+    background: var(--vino) !important;
+
+    color: white !important;
+
+    transform: scale(1.03);
+
+}
+
+@keyframes rebote{
+
+    0%{
+
+        transform: scale(1);
+
+    }
+
+    50%{
+
+        transform: scale(1.08);
+
+    }
+
+    100%{
+
+        transform: scale(1);
+
+    }
+
+}
+
+.btn-agregado{
+
+    animation: rebote .35s ease;
+
+}
