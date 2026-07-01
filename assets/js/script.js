@@ -330,12 +330,18 @@ function mostrarCarrito() {
     panel.appendChild(titulo);
 
     // Si el carrito está vacío
+    //------------------------------------------------------//
+    // Si el carrito está vacío
+    //------------------------------------------------------//
+
     if (carrito.length === 0) {
 
         const mensaje = document.createElement("p");
 
         mensaje.textContent =
-            "Tu carrito está vacío.";
+            "🛒 Tu carrito está vacío. Agrega algunos productos para comenzar.";
+
+        mensaje.classList.add("carrito-vacio");
 
         panel.appendChild(mensaje);
 
@@ -367,6 +373,22 @@ function mostrarCarrito() {
         const btnMenos = document.createElement("button");
         btnMenos.textContent = "➖";
 
+        btnMenos.addEventListener("click", () => {
+
+            item.cantidad--;
+
+            if (item.cantidad <= 0) {
+
+                carrito = carrito.filter(elemento => elemento !== item);
+
+            }
+
+            actualizarContadorCarrito();
+
+            mostrarCarrito();
+
+        });
+
         // Cantidad
         const cantidad = document.createElement("span");
         cantidad.textContent = item.cantidad;
@@ -374,6 +396,16 @@ function mostrarCarrito() {
         // Botón aumentar
         const btnMas = document.createElement("button");
         btnMas.textContent = "➕";
+
+        btnMas.addEventListener("click", () => {
+
+            item.cantidad++;
+
+            actualizarContadorCarrito();
+
+            mostrarCarrito();
+
+        });
 
         controles.append(
             btnMenos,

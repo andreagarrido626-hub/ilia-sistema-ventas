@@ -433,3 +433,19 @@ h1{
     text-align:center;
 
 }
+
+/*========================================*/
+/* CARRITO VACÍO */
+/*========================================*/
+
+.carrito-vacio{
+
+    text-align:center;
+
+    font-size:20px;
+
+    padding:60px 20px;
+
+    color:#777;
+
+}
