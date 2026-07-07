@@ -441,6 +441,49 @@ function mostrarCarrito() {
 
 }
 
+
+//======================================================//
+//                     BUSCADOR                         //
+//======================================================//
+
+//------------------------------------------------------//
+// Muestra la pantalla del buscador
+//------------------------------------------------------//
+
+function mostrarBuscador() {
+
+    limpiarPanel();
+
+    // Título
+    const titulo = document.createElement("h2");
+    titulo.textContent = "🔍 Buscar Productos";
+
+    // Descripción
+    const descripcion = document.createElement("p");
+    descripcion.textContent =
+        "Busca por nombre o categoría.";
+
+    // Input
+    const input = document.createElement("input");
+
+    input.type = "text";
+    input.placeholder = "Escribe aquí...";
+
+    input.id = "inputBuscar";
+
+    // Contenedor de resultados
+    const resultados = document.createElement("div");
+    resultados.id = "resultadosBusqueda";
+
+    panel.append(
+        titulo,
+        descripcion,
+        input,
+        resultados
+    );
+
+}
+
 //======================================================//
 //                     EVENTOS                          //
 //======================================================//
@@ -448,14 +491,7 @@ function mostrarCarrito() {
 btnProductos.addEventListener("click", mostrarProductos);
 
 // Estos los dejaremos preparados para las siguientes etapas
-btnBuscar.addEventListener("click", () => {
-    limpiarPanel();
-
-    const titulo = document.createElement("h2");
-    titulo.textContent = "🔍 Buscar";
-
-    panel.appendChild(titulo);
-});
+btnBuscar.addEventListener("click", mostrarBuscador);
 
 btnCarrito.addEventListener("click", mostrarCarrito);
 
