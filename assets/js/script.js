@@ -537,14 +537,22 @@ function mostrarResultadosBusqueda(listaProductos) {
 
     }
 
-    // Crear tarjetas
-    for (const producto of listaProductos) {
+    // Crear un contenedor igual al de Productos
+const lista = document.createElement("div");
 
-        const tarjeta = crearTarjetaProducto(producto);
+lista.classList.add("lista-productos");
 
-        resultados.appendChild(tarjeta);
+// Crear tarjetas
+for (const producto of listaProductos) {
 
-    }
+    const tarjeta = crearTarjetaProducto(producto);
+
+    lista.appendChild(tarjeta);
+
+}
+
+// Agregamos el contenedor al panel
+resultados.appendChild(lista);
 
 }
 
