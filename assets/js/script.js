@@ -475,12 +475,76 @@ function mostrarBuscador() {
     const resultados = document.createElement("div");
     resultados.id = "resultadosBusqueda";
 
+    //------------------------------------------------------//
+// Evento de búsqueda en tiempo real
+//------------------------------------------------------//
+
+input.addEventListener("input", () => {
+
+    const texto = input.value.toLowerCase().trim();
+
+    const encontrados = productos.filter(producto =>
+
+        producto.nombre.toLowerCase().includes(texto) ||
+
+        producto.categoria.toLowerCase().includes(texto)
+
+    );
+
+    mostrarResultadosBusqueda(encontrados);
+
+});
+
     panel.append(
         titulo,
         descripcion,
         input,
         resultados
     );
+
+}
+
+
+//------------------------------------------------------//
+// Muestra los resultados encontrados
+//------------------------------------------------------//
+
+function mostrarResultadosBusqueda(listaProductos) {
+
+    const resultados = document.getElementById("resultadosBusqueda");
+
+    resultados.innerHTML = "";
+
+    // Si no hay texto escrito todavía
+    const textoBuscado = document.getElementById("inputBuscar").value.trim();
+
+    if (textoBuscado === "") {
+
+        return;
+
+    }
+
+    // No se encontraron productos
+    if (listaProductos.length === 0) {
+
+        const mensaje = document.createElement("p");
+
+        mensaje.textContent = "❌ No se encontraron productos.";
+
+        resultados.appendChild(mensaje);
+
+        return;
+
+    }
+
+    // Crear tarjetas
+    for (const producto of listaProductos) {
+
+        const tarjeta = crearTarjetaProducto(producto);
+
+        resultados.appendChild(tarjeta);
+
+    }
 
 }
 
