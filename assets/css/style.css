@@ -508,3 +508,40 @@ h1{
     border-color:var(--vino);
 
 }
+
+
+/*=========================================
+            BOTONES DE STOCK
+=========================================*/
+
+.acciones-stock{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:15px;
+}
+
+.btn-stock{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+
+    background:#c62f5b;
+    color:white;
+
+    transition:.25s;
+}
+
+.btn-stock:hover{
+
+    transform:scale(1.08);
+
+}

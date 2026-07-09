@@ -476,24 +476,24 @@ function mostrarBuscador() {
     resultados.id = "resultadosBusqueda";
 
     //------------------------------------------------------//
-// Evento de búsqueda en tiempo real
-//------------------------------------------------------//
+    // Evento de búsqueda en tiempo real
+    //------------------------------------------------------//
 
-input.addEventListener("input", () => {
+    input.addEventListener("input", () => {
 
-    const texto = input.value.toLowerCase().trim();
+        const texto = input.value.toLowerCase().trim();
 
-    const encontrados = productos.filter(producto =>
+        const encontrados = productos.filter(producto =>
 
-        producto.nombre.toLowerCase().includes(texto) ||
+            producto.nombre.toLowerCase().includes(texto) ||
 
-        producto.categoria.toLowerCase().includes(texto)
+            producto.categoria.toLowerCase().includes(texto)
 
-    );
+        );
 
-    mostrarResultadosBusqueda(encontrados);
+        mostrarResultadosBusqueda(encontrados);
 
-});
+    });
 
     panel.append(
         titulo,
@@ -538,21 +538,128 @@ function mostrarResultadosBusqueda(listaProductos) {
     }
 
     // Crear un contenedor igual al de Productos
-const lista = document.createElement("div");
+    const lista = document.createElement("div");
 
-lista.classList.add("lista-productos");
+    lista.classList.add("lista-productos");
 
-// Crear tarjetas
-for (const producto of listaProductos) {
+    // Crear tarjetas
+    for (const producto of listaProductos) {
 
-    const tarjeta = crearTarjetaProducto(producto);
+        const tarjeta = crearTarjetaProducto(producto);
 
-    lista.appendChild(tarjeta);
+        lista.appendChild(tarjeta);
+
+    }
+
+    // Agregamos el contenedor al panel
+    resultados.appendChild(lista);
 
 }
 
-// Agregamos el contenedor al panel
-resultados.appendChild(lista);
+
+//======================================================//
+//                    INVENTARIO                        //
+//======================================================//
+
+//------------------------------------------------------//
+// Muestra todos los productos del inventario
+//------------------------------------------------------//
+
+function mostrarInventario() {
+
+    limpiarPanel();
+
+    // Título
+    const titulo = document.createElement("h2");
+    titulo.textContent = "📦 Inventario";
+
+    // Descripción
+    const descripcion = document.createElement("p");
+    descripcion.textContent = "Administra el stock de todos los productos.";
+
+    // Contenedor principal
+    const lista = document.createElement("div");
+    lista.classList.add("lista-productos");
+
+    // Crear una tarjeta por cada producto
+    for (const producto of productos) {
+
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("tarjeta-producto");
+
+        // Emoji
+        const emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.textContent = producto.emoji;
+
+        // Nombre
+        const nombre = document.createElement("h3");
+        nombre.textContent = producto.nombre;
+
+        // Precio
+        const precio = document.createElement("p");
+        precio.textContent = `Precio: $${producto.precio}`;
+
+        // Stock
+        const stock = document.createElement("p");
+        stock.classList.add("texto-stock");
+        stock.textContent = `Stock: ${producto.stock}`;
+
+        // Contenedor de botones
+        const acciones = document.createElement("div");
+        acciones.classList.add("acciones-stock");
+
+        // Botón -
+        const btnMenos = document.createElement("button");
+        btnMenos.textContent = "➖";
+        btnMenos.classList.add("btn-stock");
+
+        // Botón +
+        const btnMas = document.createElement("button");
+        btnMas.textContent = "➕";
+        btnMas.classList.add("btn-stock");
+
+        // Disminuir stock
+        btnMenos.addEventListener("click", () => {
+
+            if (producto.stock > 0) {
+                producto.stock--;
+                stock.textContent = `Stock: ${producto.stock}`;
+            }
+
+        });
+
+        // Aumentar stock
+        btnMas.addEventListener("click", () => {
+
+            producto.stock++;
+            stock.textContent = `Stock: ${producto.stock}`;
+
+        });
+
+        // Agregar botones
+        acciones.append(btnMenos, btnMas);
+
+        // Armar tarjeta
+        tarjeta.append(
+            emoji,
+            nombre,
+            precio,
+            stock,
+            acciones
+        );
+
+        // Agregar tarjeta a la lista
+        lista.appendChild(tarjeta);
+
+    }
+
+    // Mostrar todo
+    panel.append(
+        titulo,
+        descripcion,
+        lista
+    );
 
 }
 
@@ -567,14 +674,6 @@ btnBuscar.addEventListener("click", mostrarBuscador);
 
 btnCarrito.addEventListener("click", mostrarCarrito);
 
-btnInventario.addEventListener("click", () => {
-    limpiarPanel();
-
-    const titulo = document.createElement("h2");
-    titulo.textContent = "📦 Inventario";
-
-    panel.appendChild(titulo);
-});
 
 btnCompra.addEventListener("click", () => {
     limpiarPanel();
@@ -583,4 +682,10 @@ btnCompra.addEventListener("click", () => {
     titulo.textContent = "💳 Comprar";
 
     panel.appendChild(titulo);
+});
+
+btnInventario.addEventListener("click", () => {
+
+    mostrarInventario();
+
 });
