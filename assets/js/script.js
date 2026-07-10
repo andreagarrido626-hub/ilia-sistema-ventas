@@ -64,6 +64,9 @@ const productos = [
 ];
 
 
+const productosOriginales = JSON.parse(JSON.stringify(productos));
+
+
 
 //======================================================//
 //                     VARIABLES                        //
@@ -735,6 +738,31 @@ function mostrarInventario() {
     const descripcion = document.createElement("p");
     descripcion.textContent = "Administra el stock de todos los productos.";
 
+    // Botón Restablecer Inventario
+const btnRestablecer = document.createElement("button");
+
+btnRestablecer.textContent = "🔄 Restablecer inventario";
+
+btnRestablecer.classList.add("btn-restablecer");
+
+btnRestablecer.addEventListener("click", () => {
+
+    if (!confirm("¿Deseas restablecer todo el inventario?")) {
+
+        return;
+
+    }
+
+    productos.length = 0;
+
+    productos.push(...JSON.parse(JSON.stringify(productosOriginales)));
+
+    guardarProductos();
+
+    mostrarInventario();
+
+});
+
     // Contenedor principal
     const lista = document.createElement("div");
     lista.classList.add("lista-productos");
@@ -815,7 +843,8 @@ function mostrarInventario() {
     // Mostrar todo
     panel.append(
         titulo,
-        descripcion,
+        descripcion, 
+        btnRestablecer,
         lista
     );
 
