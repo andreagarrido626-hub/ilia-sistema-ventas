@@ -91,7 +91,11 @@ const btnCompra = document.getElementById("btnCompra");
 //                FUNCIONES GENERALES                   //
 //======================================================//
 
-// Limpia completamente el panel antes de mostrar una nueva vista
+
+//------------------------------------------------------//
+// Limpia el contenido del panel
+//------------------------------------------------------//
+
 function limpiarPanel() {
 
     panel.innerHTML = "";
@@ -99,26 +103,93 @@ function limpiarPanel() {
 }
 
 
-
-// Muestra la pantalla de bienvenida al iniciar la aplicación
 function mostrarInicio() {
+
+
 
     limpiarPanel();
 
-    const titulo = document.createElement("h2");
-    titulo.textContent = "👋 Bienvenida Andrea";
+    // Calculamos estadísticas
+    const totalProductos = productos.length;
 
-    const texto = document.createElement("p");
-    texto.textContent =
+    const totalStock = productos.reduce((total, producto) => {
+
+        return total + producto.stock;
+
+    }, 0);
+
+    const totalCarrito = carrito.reduce((total, item) => {
+
+        return total + item.cantidad;
+
+    }, 0);
+
+
+
+    // Título
+    const titulo = document.createElement("h2");
+    titulo.textContent = "🏠 Panel Principal";
+
+
+
+    // Texto
+    const descripcion = document.createElement("p");
+    descripcion.textContent =
         "Bienvenida al sistema de gestión de ventas de Ilia.";
 
-    const texto2 = document.createElement("p");
-    texto2.textContent =
-        "Utiliza las opciones superiores para comenzar.";
 
-    panel.appendChild(titulo);
-    panel.appendChild(texto);
-    panel.appendChild(texto2);
+
+    // Contenedor Dashboard
+    const dashboard = document.createElement("div");
+    dashboard.classList.add("dashboard");
+
+
+
+    dashboard.innerHTML = `
+
+        <div class="card-dashboard">
+
+            <h3>📦 Productos</h3>
+
+            <p>${totalProductos}</p>
+
+        </div>
+
+        <div class="card-dashboard">
+
+            <h3>📊 Stock</h3>
+
+            <p>${totalStock}</p>
+
+        </div>
+
+        <div class="card-dashboard">
+
+            <h3>🛒 Carrito</h3>
+
+            <p>${totalCarrito}</p>
+
+        </div>
+
+    `;
+
+
+
+    // Estado
+    const estado = document.createElement("div");
+    estado.classList.add("estado-sistema");
+
+    estado.innerHTML =
+        "✅ <strong>Sistema listo para comenzar las ventas.</strong>";
+
+
+
+    panel.append(
+        titulo,
+        descripcion,
+        dashboard,
+        estado
+    );
 
 }
 
