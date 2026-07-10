@@ -120,10 +120,41 @@ function mostrarInicio() {
 }
 
 
+//------------------------------------------------------//
+// LocalStorage
+//------------------------------------------------------//
+
+function guardarProductos() {
+
+    localStorage.setItem(
+        "productosIlia",
+        JSON.stringify(productos)
+    );
+
+}
+
+function cargarProductos() {
+
+    const productosGuardados =
+        localStorage.getItem("productosIlia");
+
+    if (productosGuardados) {
+
+        const datos = JSON.parse(productosGuardados);
+
+        productos.length = 0;
+
+        productos.push(...datos);
+
+    }
+
+}
 
 //======================================================//
 //                 INICIAR APLICACIÓN                   //
 //======================================================//
+
+cargarProductos();
 
 mostrarInicio();
 
@@ -337,7 +368,7 @@ function mostrarCarrito() {
 
     panel.appendChild(titulo);
 
-    
+
     //------------------------------------------------------//
     // Si el carrito está vacío
     //------------------------------------------------------//
@@ -407,21 +438,21 @@ function mostrarCarrito() {
 
         btnMas.addEventListener("click", () => {
 
-    if (item.cantidad >= item.producto.stock) {
+            if (item.cantidad >= item.producto.stock) {
 
-        alert("❌ Stock insuficiente.");
+                alert("❌ Stock insuficiente.");
 
-        return;
+                return;
 
-    }
+            }
 
-    item.cantidad++;
+            item.cantidad++;
 
-    actualizarContadorCarrito();
+            actualizarContadorCarrito();
 
-    mostrarCarrito();
+            mostrarCarrito();
 
-});
+        });
 
         controles.append(
             btnMenos,
@@ -456,15 +487,15 @@ function mostrarCarrito() {
     panel.appendChild(total);
 
     // Botón finalizar compra
-const btnFinalizar = document.createElement("button");
+    const btnFinalizar = document.createElement("button");
 
-btnFinalizar.textContent = "✅ Finalizar compra";
+    btnFinalizar.textContent = "✅ Finalizar compra";
 
-btnFinalizar.classList.add("btn-finalizar");
+    btnFinalizar.classList.add("btn-finalizar");
 
-btnFinalizar.addEventListener("click", finalizarCompra);
+    btnFinalizar.addEventListener("click", finalizarCompra);
 
-panel.appendChild(btnFinalizar);
+    panel.appendChild(btnFinalizar);
 
 }
 
@@ -545,6 +576,9 @@ function finalizarCompra() {
         }
 
     }
+
+    // Guardamos el nuevo inventario
+    guardarProductos();
 
     // Vaciar carrito
     carrito = [];
