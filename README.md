@@ -71,3 +71,8 @@ El modo consola permite practicar los fundamentos solicitados en la pauta: ingre
 - Resumen de compra.
 - Inventario.
 - Modo consola ejecutandose con resultados visibles en la consola del navegador.
+
+
+## Contacto
+- Para preguntas o mejoras, abre un issue en el repositorio o contacta al mantenedor.
+github: [Repositorio proyecto](https://github.com/andreagarrido626-hub/ilia-sistema-ventas)
