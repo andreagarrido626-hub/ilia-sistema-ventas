@@ -545,3 +545,36 @@ h1{
     transform:scale(1.08);
 
 }
+
+
+.btn-finalizar{
+
+    display:block;
+
+    margin:30px auto;
+
+    padding:14px 30px;
+
+    background:#d6336c;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-finalizar:hover{
+
+    transform:scale(1.05);
+
+}

@@ -439,6 +439,114 @@ function mostrarCarrito() {
 
     panel.appendChild(total);
 
+    // Botón finalizar compra
+const btnFinalizar = document.createElement("button");
+
+btnFinalizar.textContent = "✅ Finalizar compra";
+
+btnFinalizar.classList.add("btn-finalizar");
+
+btnFinalizar.addEventListener("click", finalizarCompra);
+
+panel.appendChild(btnFinalizar);
+
+}
+
+
+
+
+function mostrarCompra() {
+
+    limpiarPanel();
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "💳 Resumen de Compra";
+
+    panel.appendChild(titulo);
+
+    if (carrito.length === 0) {
+
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "🛒 No hay productos para comprar.";
+        mensaje.classList.add("carrito-vacio");
+
+        panel.appendChild(mensaje);
+
+        return;
+    }
+
+    let totalCompra = 0;
+
+    for (const item of carrito) {
+
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("tarjeta-producto");
+
+        const nombre = document.createElement("h3");
+        nombre.textContent = `${item.producto.emoji} ${item.producto.nombre}`;
+
+        const cantidad = document.createElement("p");
+        cantidad.textContent = `Cantidad: ${item.cantidad}`;
+
+        const subtotal = item.producto.precio * item.cantidad;
+
+        totalCompra += subtotal;
+
+        const precio = document.createElement("p");
+        precio.textContent = `Subtotal: $${subtotal}`;
+
+        tarjeta.append(
+            nombre,
+            cantidad,
+            precio
+        );
+
+        panel.appendChild(tarjeta);
+
+    }
+
+    const total = document.createElement("h2");
+    total.textContent = `💰 Total a pagar: $${totalCompra}`;
+
+    panel.appendChild(total);
+
+}
+
+
+
+
+function finalizarCompra() {
+
+    // Descontar stock
+    for (const item of carrito) {
+
+        item.producto.stock -= item.cantidad;
+
+        if (item.producto.stock < 0) {
+
+            item.producto.stock = 0;
+
+        }
+
+    }
+
+    // Vaciar carrito
+    carrito = [];
+
+    // Actualizar contador
+    actualizarContadorCarrito();
+
+    // Limpiar pantalla
+    limpiarPanel();
+
+    // Mensaje
+    const mensaje = document.createElement("h2");
+
+    mensaje.textContent =
+        "✅ ¡Compra realizada con éxito!";
+
+    panel.appendChild(mensaje);
+
 }
 
 
@@ -675,14 +783,7 @@ btnBuscar.addEventListener("click", mostrarBuscador);
 btnCarrito.addEventListener("click", mostrarCarrito);
 
 
-btnCompra.addEventListener("click", () => {
-    limpiarPanel();
-
-    const titulo = document.createElement("h2");
-    titulo.textContent = "💳 Comprar";
-
-    panel.appendChild(titulo);
-});
+btnCompra.addEventListener("click", mostrarCompra);
 
 btnInventario.addEventListener("click", () => {
 
