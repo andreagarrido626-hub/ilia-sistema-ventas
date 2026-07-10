@@ -247,6 +247,15 @@ function agregarAlCarrito(idProducto, boton) {
     // Buscar si el producto ya existe en el carrito
     const itemCarrito = carrito.find(item => item.producto.id === idProducto);
 
+    // Si ya llegó al stock máximo
+    if (itemCarrito && itemCarrito.cantidad >= producto.stock) {
+
+        alert("❌ Stock insuficiente.");
+
+        return;
+
+    }
+
     if (itemCarrito) {
 
         // Si ya existe aumentamos la cantidad
@@ -280,7 +289,6 @@ function agregarAlCarrito(idProducto, boton) {
     }, 800);
 
 }
-
 
 
 //------------------------------------------------------//
@@ -329,7 +337,7 @@ function mostrarCarrito() {
 
     panel.appendChild(titulo);
 
-    // Si el carrito está vacío
+    
     //------------------------------------------------------//
     // Si el carrito está vacío
     //------------------------------------------------------//
@@ -399,13 +407,21 @@ function mostrarCarrito() {
 
         btnMas.addEventListener("click", () => {
 
-            item.cantidad++;
+    if (item.cantidad >= item.producto.stock) {
 
-            actualizarContadorCarrito();
+        alert("❌ Stock insuficiente.");
 
-            mostrarCarrito();
+        return;
 
-        });
+    }
+
+    item.cantidad++;
+
+    actualizarContadorCarrito();
+
+    mostrarCarrito();
+
+});
 
         controles.append(
             btnMenos,
