@@ -631,6 +631,16 @@ function mostrarCompra() {
 
     panel.appendChild(total);
 
+    const btnFinalizar = document.createElement("button");
+
+    btnFinalizar.textContent = "✅ Finalizar compra";
+
+    btnFinalizar.classList.add("btn-finalizar");
+
+    btnFinalizar.addEventListener("click", finalizarCompra);
+
+    panel.appendChild(btnFinalizar);
+
 }
 
 
@@ -810,29 +820,29 @@ function mostrarInventario() {
     descripcion.textContent = "Administra el stock de todos los productos.";
 
     // Botón Restablecer Inventario
-const btnRestablecer = document.createElement("button");
+    const btnRestablecer = document.createElement("button");
 
-btnRestablecer.textContent = "🔄 Restablecer inventario";
+    btnRestablecer.textContent = "🔄 Restablecer inventario";
 
-btnRestablecer.classList.add("btn-restablecer");
+    btnRestablecer.classList.add("btn-restablecer");
 
-btnRestablecer.addEventListener("click", () => {
+    btnRestablecer.addEventListener("click", () => {
 
-    if (!confirm("¿Deseas restablecer todo el inventario?")) {
+        if (!confirm("¿Deseas restablecer todo el inventario?")) {
 
-        return;
+            return;
 
-    }
+        }
 
-    productos.length = 0;
+        productos.length = 0;
 
-    productos.push(...JSON.parse(JSON.stringify(productosOriginales)));
+        productos.push(...JSON.parse(JSON.stringify(productosOriginales)));
 
-    guardarProductos();
+        guardarProductos();
 
-    mostrarInventario();
+        mostrarInventario();
 
-});
+    });
 
     // Contenedor principal
     const lista = document.createElement("div");
@@ -914,7 +924,7 @@ btnRestablecer.addEventListener("click", () => {
     // Mostrar todo
     panel.append(
         titulo,
-        descripcion, 
+        descripcion,
         btnRestablecer,
         lista
     );
