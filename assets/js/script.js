@@ -565,9 +565,11 @@ function mostrarCarrito() {
 
     btnFinalizar.textContent = "✅ Finalizar compra";
 
+    btnFinalizar.addEventListener("click", confirmarCompra);
+
     btnFinalizar.classList.add("btn-finalizar");
 
-    btnFinalizar.addEventListener("click", finalizarCompra);
+    btnFinalizar.addEventListener("click", confirmarCompra);
 
     panel.appendChild(btnFinalizar);
 
@@ -637,14 +639,37 @@ function mostrarCompra() {
 
     btnFinalizar.classList.add("btn-finalizar");
 
-    btnFinalizar.addEventListener("click", finalizarCompra);
+    btnFinalizar.addEventListener("click", confirmarCompra);
 
     panel.appendChild(btnFinalizar);
 
 }
 
 
+//------------------------------------------------------//
+// Confirmar compra
+//------------------------------------------------------//
 
+function confirmarCompra() {
+
+    const confirmar = confirm(
+        "¿Estás segura de finalizar esta compra?\n\nEsta acción descontará el stock y vaciará el carrito."
+    );
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+    finalizarCompra();
+
+}
+
+
+//------------------------------------------------------//
+// Finalizar compra
+//------------------------------------------------------//
 
 function finalizarCompra() {
 
@@ -673,13 +698,48 @@ function finalizarCompra() {
     // Limpiar pantalla
     limpiarPanel();
 
-    // Mensaje
-    const mensaje = document.createElement("h2");
+    // Contenedor principal
+    const confirmacion = document.createElement("div");
 
-    mensaje.textContent =
-        "✅ ¡Compra realizada con éxito!";
+    confirmacion.style.textAlign = "center";
+    confirmacion.style.padding = "40px";
 
-    panel.appendChild(mensaje);
+    // Icono
+    const icono = document.createElement("h1");
+    icono.textContent = "🎉";
+
+    // Título
+    const titulo = document.createElement("h2");
+    titulo.textContent = "¡Compra realizada con éxito!";
+
+    // Texto
+    const texto = document.createElement("p");
+    texto.textContent =
+        "Gracias por comprar en ILIA. Tu pedido fue procesado correctamente.";
+
+    // Botón volver
+    const btnVolver = document.createElement("button");
+
+    btnVolver.textContent = "🏠 Volver al Inicio";
+
+    btnVolver.classList.add("btn-finalizar");
+
+    btnVolver.addEventListener("click", () => {
+
+        mostrarInicio();
+
+    });
+
+    // Agregar elementos
+    confirmacion.append(
+        icono,
+        titulo,
+        texto,
+        btnVolver
+    );
+
+    // Mostrar
+    panel.appendChild(confirmacion);
 
 }
 
